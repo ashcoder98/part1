@@ -1,9 +1,20 @@
 import { useState } from 'react'
+const StatisitcsLine = ({ value, text }) => {
+  return(
+    <p>{text} {value}</p>
+  )
+}
+const Statisitcs = ({ good, neutral, bad, total, average, positive }) => {
 
-const Statisitcs = ({ value, text }) => {
+    return (<div>
 
-    return (
-      <p>{text} {value}</p>
+      <StatisitcsLine value={good} text={"good"}/>
+      <StatisitcsLine value={neutral} text={"neutral"}/>
+      <StatisitcsLine value={bad} text={"bad"}/>
+      <StatisitcsLine value={total} text={"total"}/>
+      <StatisitcsLine value={average} text={"average"}/>
+      <StatisitcsLine value={positive} text={"positive"}/>
+    </div>
     )
 
   
@@ -91,33 +102,13 @@ if (good == 0 && neutral == 0 && bad == 0 && total == 0 && average == 0 && posit
       <Button text={"bad"} value={bad} setValue={setBad}setTotalAmt={setTotal} totalAmt={total} average={average} setAverage={setAverage} negativeOne={negativeOne} averageSum={averageSum} setAverageSum={setAverageSum}setPositive={setPositive}/>
       <h1>statistics</h1>
      <Statisitcs 
-      value={good}
-      text={"good"}
+      good={good}
+      neutral={neutral}
+      bad={bad}
+      total={total}
+      average={average}
+      positive={positive}
      />
-      
-      <Statisitcs
-       value={neutral}
-      text={"neutral"}
-      />
-        
-      <Statisitcs
-       value={bad}
-        text={"bad"}
-      />
-        
-        <Statisitcs
-        value={total}
-        text={"all"}
-        />
-        <Statisitcs
-        value={average}
-        text={"average"}
-        />
-        <Statisitcs
-        value={positive} 
-        text={"positive"}
-        />
-
     </div>
   )
 }
