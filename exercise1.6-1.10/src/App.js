@@ -1,9 +1,12 @@
 import { useState } from 'react'
 
 const Statisitcs = ({ value, text }) => {
-  return (
-    <p>{text} {value}</p>
-  )
+
+    return (
+      <p>{text} {value}</p>
+    )
+
+  
 }
 const Button = ({ text, value, setValue, totalAmt, setTotalAmt, average, setAverage, positive, setPositive, positiveOne, negativeOne, zero, averageSum, setAverageSum }) => {
   const AddFeedBack = () =>{
@@ -68,7 +71,18 @@ const App = () => {
   const zero = 0
 
 
-
+if (good == 0 && neutral == 0 && bad == 0 && total == 0 && average == 0 && positive == 0){
+  return (
+    <div>
+    <h1>give feedback</h1>
+    <Button text={"good"} value={good} setValue={setGood} setTotalAmt={setTotal} totalAmt={total} average={average} setAverage={setAverage} positive={positive} setPositive={setPositive} positiveOne={positiveOne} averageSum={averageSum} setAverageSum={setAverageSum}/>
+    <Button text={"neutral"} value={neutral} setValue={setNeutral}setTotalAmt={setTotal} totalAmt={total} average={average} setAverage={setAverage} zero={zero} averageSum={averageSum} setAverageSum={setAverageSum} setPositive={setPositive}/>
+    <Button text={"bad"} value={bad} setValue={setBad}setTotalAmt={setTotal} totalAmt={total} average={average} setAverage={setAverage} negativeOne={negativeOne} averageSum={averageSum} setAverageSum={setAverageSum}setPositive={setPositive}/>
+    <h1>statistics</h1>
+    <p>No feedback given</p>
+    </div>
+  )
+}
   return (
     <div>
       <h1>give feedback</h1>
