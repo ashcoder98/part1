@@ -20,7 +20,7 @@ const Button = ({ text, value, setValue, totalAmt, setTotalAmt, average, setAver
     }
 
     console.log(newAverageSum)
-    if (newAverageSum.includes(0) && newAverageSum.length == 1){
+    if (newAverageSum.length == 0){
       setAverage(0)
     }
     else {
