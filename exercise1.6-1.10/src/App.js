@@ -1,6 +1,10 @@
 import { useState } from 'react'
 
-
+const Statisitcs = ({ value, text }) => {
+  return (
+    <p>{text} {value}</p>
+  )
+}
 const Button = ({ text, value, setValue, totalAmt, setTotalAmt, average, setAverage, positive, setPositive, positiveOne, negativeOne, zero, averageSum, setAverageSum }) => {
   const AddFeedBack = () =>{
     let newFeedBack = value += 1;
@@ -24,6 +28,16 @@ const Button = ({ text, value, setValue, totalAmt, setTotalAmt, average, setAver
       setAverage(0)
     }
     else {
+      let positiveSum = 0
+      for (let i=0;i < newAverageSum.length; i++){
+        if(newAverageSum[i] == 1){
+          positiveSum += 1
+        }
+
+      }
+      let positiveFeedBack = positiveSum/newTotal
+      setPositive(positiveFeedBack)
+
       let sum = newAverageSum.reduce(function(a, b){
         return a + b;
       })
@@ -38,11 +52,6 @@ const Button = ({ text, value, setValue, totalAmt, setTotalAmt, average, setAver
     <button onClick={AddFeedBack}>{text}</button>
   )
 }
-
-
-
-
-
 
 
 const App = () => {
@@ -64,21 +73,36 @@ const App = () => {
     <div>
       <h1>give feedback</h1>
       <Button text={"good"} value={good} setValue={setGood} setTotalAmt={setTotal} totalAmt={total} average={average} setAverage={setAverage} positive={positive} setPositive={setPositive} positiveOne={positiveOne} averageSum={averageSum} setAverageSum={setAverageSum}/>
-      <Button text={"neutral"} value={neutral} setValue={setNeutral}setTotalAmt={setTotal} totalAmt={total} average={average} setAverage={setAverage} zero={zero} averageSum={averageSum} setAverageSum={setAverageSum}/>
-      <Button text={"bad"} value={bad} setValue={setBad}setTotalAmt={setTotal} totalAmt={total} average={average} setAverage={setAverage} negativeOne={negativeOne} averageSum={averageSum} setAverageSum={setAverageSum}/>
+      <Button text={"neutral"} value={neutral} setValue={setNeutral}setTotalAmt={setTotal} totalAmt={total} average={average} setAverage={setAverage} zero={zero} averageSum={averageSum} setAverageSum={setAverageSum} setPositive={setPositive}/>
+      <Button text={"bad"} value={bad} setValue={setBad}setTotalAmt={setTotal} totalAmt={total} average={average} setAverage={setAverage} negativeOne={negativeOne} averageSum={averageSum} setAverageSum={setAverageSum}setPositive={setPositive}/>
       <h1>statistics</h1>
-     <p>
-      good {good}
-      </p> 
-      <p>
-       neutral {neutral}
-        </p>
-      <p>
-       bad {bad}
-        </p>
-        <p>all {total}</p>
-        <p>average {average}</p>
-        <p>positive {positive} %</p>
+     <Statisitcs 
+      value={good}
+      text={"good"}
+     />
+      
+      <Statisitcs
+       value={neutral}
+      text={"neutral"}
+      />
+        
+      <Statisitcs
+       value={bad}
+        text={"bad"}
+      />
+        
+        <Statisitcs
+        value={total}
+        text={"all"}
+        />
+        <Statisitcs
+        value={average}
+        text={"average"}
+        />
+        <Statisitcs
+        value={positive} 
+        text={"positive"}
+        />
 
     </div>
   )
